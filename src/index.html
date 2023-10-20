@@ -4,23 +4,24 @@
     <title>Weather app</title>
   </head>
   <body>
-    <header class="header">
+    <header>
       <h1 class="appName">Weather App</h1>
     </header>
     <main class="main">
-      <form>
+      <form class="searchForm">
         <input
           type="text"
           id="searchInput"
           placeholder="Enter city name"
           class="input"
         />
-        <button type="submit" id="searchBtn">Search</button>
+        <button type="submit" id="searchBtn" class="searchBtn">Search</button>
       </form>
+      <p id="errorText" class="errorText"></p>
 
       <div class="searchResult" id="searchResult" style="display: none">
         <h3 id="cityName"></h3>
-        <p id="temperature"></p>
+        <p id="temperature" class="temperature"></p>
         <p id="feelsLike"></p>
         <p id="humidity"></p>
         <p id="wind"></p>
