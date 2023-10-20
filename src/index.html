@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Weather app</title>
   </head>
-  <body></body>
+  <body>
+    <header class="header">
+      <h1 class="appName">Weather App</h1>
+    </header>
+    <main class="main">
+      <form>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Enter city name"
+          class="input"
+        />
+        <button type="submit" id="searchBtn">Search</button>
+      </form>
+
+      <div class="searchResult" id="searchResult" style="display: none">
+        <h3 id="cityName"></h3>
+        <p id="temperature"></p>
+        <p id="feelsLike"></p>
+        <p id="humidity"></p>
+        <p id="wind"></p>
+      </div>
+    </main>
+  </body>
 </html>
