@@ -1,9 +1,17 @@
 import "./style.css";
+let currentTempC;
+let currentTempF;
+let feelsLikeC;
+let feelsLikeF;
+let currentUnit = "°C";
 
 const searchResult = document.getElementById("searchResult");
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
 const errorText = document.getElementById("errorText");
+const toggleTemp = document.getElementById("toggleTemp");
+
+toggleTemp.checked = false;
 
 async function getWeatherInfo() {
   const searchCity = searchInput.value.trim();
@@ -30,16 +38,25 @@ async function getWeatherInfo() {
     }
 
     const cityName = weatherData.location.name;
-    const temperature = weatherData.current.temp_c;
-    const feelsLike = weatherData.current.feelslike_c;
+    currentTempC = weatherData.current.temp_c;
+    currentTempF = weatherData.current.temp_f;
+    feelsLikeC = weatherData.current.feelslike_c;
+    feelsLikeF = weatherData.current.feelslike_f;
     const humidity = weatherData.current.humidity;
     const wind = weatherData.current.wind_kph;
 
     document.getElementById("cityName").textContent = cityName;
-    document.getElementById("temperature").textContent =
-      temperature + " " + "°C";
-    document.getElementById("feelsLike").textContent =
-      "Feels like:" + " " + feelsLike + " " + "°C";
+
+    if (currentUnit === "°C") {
+      document.getElementById("temperature").textContent = currentTempC + "°C";
+      document.getElementById("feelsLike").textContent =
+        "Feels like: " + feelsLikeC + "°C";
+    } else {
+      document.getElementById("temperature").textContent = currentTempF + "°F";
+      document.getElementById("feelsLike").textContent =
+        "Feels like: " + feelsLikeF + "°F";
+    }
+
     document.getElementById("humidity").textContent =
       "Humidity:" + " " + humidity + " " + "%";
     document.getElementById("wind").textContent =
@@ -65,6 +82,22 @@ async function getWeatherInfo() {
     }
   }
 }
+
+toggleTemp.addEventListener("change", () => {
+  if (toggleTemp.checked) {
+    currentUnit = "°F";
+
+    document.getElementById("temperature").textContent = currentTempF + "°F";
+    document.getElementById("feelsLike").textContent =
+      "Feels like: " + feelsLikeF + "°F";
+  } else {
+    currentUnit = "°C";
+
+    document.getElementById("temperature").textContent = currentTempC + "°C";
+    document.getElementById("feelsLike").textContent =
+      "Feels like: " + feelsLikeC + "°C";
+  }
+});
 
 searchBtn.addEventListener("click", (event) => {
   event.preventDefault();
